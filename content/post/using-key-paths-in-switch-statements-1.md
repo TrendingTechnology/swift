@@ -2,33 +2,48 @@
 author = ""
 categories = ["Tips"]
 date = 2020-01-05T16:03:00Z
-description = "One of Swift’s lesser known, but incredibly powerful language features is how the ~= operator lets us implement custom pattern matching variants between different types."
+description = "In Swift, it’s possible to satisfy a throwing function protocol requirement using a non-throwing function, which can be very useful in certain situations."
 featuredimage = ""
-tags = ["key path"]
-title = "Using key paths in switch statements"
+tags = ["protocol "]
+title = "Implementing throwing protocol functions as non-throwing"
 
 +++
-One of Swift’s lesser known, but incredibly powerful language features is how the `~=` operator lets us implement custom pattern matching variants between different types. Those new pattern matching capabilities can then be used in `switch` statements, when using `if case` syntax, or within any other context in which pattern matching is supported.
+In Swift, it’s possible to satisfy a throwing function protocol requirement using a non-throwing function, which can be very useful in certain situations. For example, let’s say that we’ve defined a protocol for parsers that enable us tokenize a string in some way:
 
-Here’s how we could use that language feature to define a `~=` overload that matches a boolean key path into a type against an instance of that type:
-
-    func ~=<T>(rhs: KeyPath<T, Bool>, lhs: T) -> Bool {
-        lhs[keyPath: rhs]
+    protocol TokenParser {
+        func parseToken(from string: String) throws -> Token
     }
 
-With the above in place, we can now simply use a key path to define a pattern, and mix those patterns freely with those that match against a value — which is really useful when using a `switch` statement to decide how to parse or handle a given value:
+While certain implementations of the above protocol will need to throw, that won’t necessarily be true for all conforming types. For example, the below `KeywordParser` throws, while `TextParser` doesn’t:
 
-    func handle(_ character: Character) {
-        switch character {
-        case "<":
-            parseElement()
-        case "#":
-            parseHashtag()
-        case \.isNumber:
-            parseNumber()
-        case \.isNewline:
-            startNewLine()
-        default:
-            parseAnyCharacter()
+    struct KeywordParser: TokenParser {
+        func parseToken(from string: String) throws -> Token {
+            ...
         }
     }
+    
+    struct TextParser: TokenParser {
+        // This will satisfy our protocol requirement, even though
+        // this implementation doesn't actually throw:
+        func parseToken(from string: String) -> Token {
+            ...
+        }
+    }
+
+Since the original declaration of our protocol function is marked as throwing, we’ll always need to call it with `try` when the exact conforming type isn’t known — regardless of whether the underlying implementation _actually_ throws:
+
+    let parsers: [TokenParser] = ...
+    
+    for parser in parsers {
+        // Since all we know about each parser within this iteration
+        // is that it conforms to our 'TokenParser' protocol, we'll
+        // need to use 'try' when calling its function:
+        let token = try parser.parseToken(from: string)
+    }
+
+However, when dealing with a non-throwing conforming type directly, we can now omit the `try` keyword — even though the original protocol requirement was marked as throwing:
+
+    let parser = TextParser()
+    let text = parser.parseToken(from: string)
+
+It’s a small feature, but the fact that we can implement a throwing function requirement using a non-throwing one gives us a slightly greater degree of flexibility when conforming to protocols that contain such functions.
