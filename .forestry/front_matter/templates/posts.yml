@@ -1,0 +1,13 @@
+---
+label: Posts
+hide_body: false
+fields:
+- type: text
+  name: title
+  label: title
+- type: text
+  name: button
+  label: button
+- type: number
+  name: weight
+  label: weight
