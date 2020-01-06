@@ -2,10 +2,6 @@
 {{- partial "article-header.html" . -}}
 {{- $justify := false -}}
 {{- if eq .Params.justify true -}} {{- $justify = true -}} {{- end -}}
-
-  {{if isset .Params "featuredimage" }}<div class="post-full-image"><img src="{{ index .Params "featuredimage" }}"alt="{{ .Title }}" ></div>{{ end }}
-
-
 <article class="article markdown-body" {{- if $justify -}}style="text-align: justify;" {{- end -}}>
     {{- .Content -}}
 </article>
