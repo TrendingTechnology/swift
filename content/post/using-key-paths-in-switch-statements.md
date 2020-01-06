@@ -3,7 +3,7 @@ author = ""
 categories = ["Tips"]
 date = 2020-01-05T16:00:00Z
 description = "One of Swift’s lesser known, but incredibly powerful language features is how the ~= operator lets us implement custom pattern matching variants between different types. "
-featuredimage = ""
+featuredimage = "https://res.cloudinary.com/diqqalzsx/image/upload/v1578297638/static/swift/Learning_Disabilities_wcees9.jpg"
 tags = ["key path", "Switch"]
 title = "Using key paths in switch statements"
 
