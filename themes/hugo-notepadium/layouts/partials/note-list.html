@@ -31,7 +31,13 @@
             {{- if .Date -}}
                 <p class="note date">{{- .Date.Format $dateFormat -}}</p>
             {{- end -}}
-            {{- if .Summary -}}<p class="note content">{{- .Summary | plainify | safeHTML -}}{{- if .Truncated -}}<span>&mldr;</span>{{- end -}}</p>{{- end -}}
+            <p class="note content">{{ with .Description }}
+          {{ . | markdownify }}
+        {{ else }}
+          {{ if .Truncated }}
+            {{ .Summary | markdownify }}
+          {{ end }}
+        {{ end }}</p>
         </a>
         {{- if or .Params.categories .Params.tags -}}
             <p class="note labels">
