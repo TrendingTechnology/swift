@@ -1,9 +1,10 @@
 +++
 author = ""
+categories = ["Tips"]
 date = 2020-01-05T16:00:00Z
 description = "One of Swift’s lesser known, but incredibly powerful language features is how the ~= operator lets us implement custom pattern matching variants between different types. "
 featuredimage = ""
-tags = ["Tips"]
+tags = ["Switch"]
 title = "Using key paths in switch statements"
 
 +++
