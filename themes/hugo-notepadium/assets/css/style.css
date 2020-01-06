@@ -785,7 +785,6 @@ a.post-card-image-link {
 @media (max-width: 650px) {
 .note.list .item {
     width: auto;
-    margin: 15px;
     display: block;
 }
 }
