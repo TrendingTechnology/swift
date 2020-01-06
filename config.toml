@@ -16,7 +16,7 @@ enableRobotsTXT = true
 
 [markup.highlight]
 codeFences = true
-noClasses = false
+noClasses = true
 
 [markup.goldmark.renderer]
 unsafe = true  # enable raw HTML in Markdown
@@ -39,7 +39,7 @@ enable = false # load math globally, default: false. You can always enable math 
 use = "katex"  # builtin: "katex", "mathjax".  default: "katex"
 
 [params.syntax]
-use = "hljs"  # builtin: "prismjs", "hljs". "none" means Chroma
+use = "prismjs"  # builtin: "prismjs", "hljs". "none" means Chroma
 theme = "dracula"
 darkTheme = "xcode-dark"
 
