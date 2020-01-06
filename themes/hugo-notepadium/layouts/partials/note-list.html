@@ -7,20 +7,24 @@
     {{- range $paginator.Pages -}}
     <li class="item">
 
-            {{- $relURL := .RelPermalink -}}
-            {{- $imgs := .Params.featuredimage -}}
-            {{- with .Params.featuredimage -}}
-                <span class="note imgs">
-                    {{- $imgCount := len $imgs -}}
-                    {{- range $imgs -}}
-                    {{- $imgurl := lower . -}}
-                    {{- if and (not (hasPrefix $imgurl "http://")) (not (hasPrefix $imgurl "https://")) -}}
-                    {{- $imgurl = path.Join $relURL . -}}
-                    {{- end -}}
-                    <img class="img" src="{{ index .Params "featuredimage"}}" alt />
-                    {{- end -}}
-                </span>
-            {{- end -}}
+{{ if .Resources.GetMatch "featuredImage.*" }}
+    <div class="featured-image">
+        <a href="{{ .Permalink }}">
+            {{ if and (.Site.Params.resizeImages | default true) (.Params.resizeImages | default true) }}
+                <img src="{{ ((.Resources.GetMatch "featuredImage.*").Fill "700x350 q95").RelPermalink }}" alt="">
+            {{ else }}
+                <img src="{{ (.Resources.GetMatch "featuredImage.*").RelPermalink }}" alt="">
+            {{ end }}
+        </a>
+    </div>
+{{ else if and (isset .Params "featuredimage") (ne .Params.featuredImage "") }}
+    <div class="featured-image">
+        <a href="{{ .Permalink }}">
+            <img src="{{ .Params.featuredImage | relURL }}" alt="">
+        </a>
+    </div>
+{{ end }}
+        
         <a class="note" href="{{- .RelPermalink -}}">
         <div class="post-card-content">
             <p class="note title">{{- .Title | safeHTML -}}</p>
