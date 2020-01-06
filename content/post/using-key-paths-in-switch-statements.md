@@ -4,13 +4,13 @@ categories = ["Tips"]
 date = 2020-01-05T16:00:00Z
 description = "One of Swift’s lesser known, but incredibly powerful language features is how the ~= operator lets us implement custom pattern matching variants between different types. "
 featuredimage = ""
-tags = ["Switch"]
+tags = ["key path", "Switch"]
 title = "Using key paths in switch statements"
 
 +++
 One of Swift’s lesser known, but incredibly powerful language features is how the `~=` operator lets us implement custom pattern matching variants between different types. Those new pattern matching capabilities can then be used in `switch` statements, when using `if case` syntax, or within any other context in which pattern matching is supported.
 
-Here’s how we could use that language feature to define a `~=` overload that matches a boolean [key path](https://swiftbysundell.com/articles/the-power-of-key-paths-in-swift) into a type against an instance of that type:
+Here’s how we could use that language feature to define a `~=` overload that matches a boolean key path into a type against an instance of that type:
 
     func ~=<T>(rhs: KeyPath<T, Bool>, lhs: T) -> Bool {
         lhs[keyPath: rhs]
