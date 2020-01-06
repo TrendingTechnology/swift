@@ -39,9 +39,9 @@ enable = false # load math globally, default: false. You can always enable math 
 use = "katex"  # builtin: "katex", "mathjax".  default: "katex"
 
 [params.syntax]
-use = "none"  # builtin: "prismjs", "hljs". "none" means Chroma
-theme = "xcode"
-darkTheme = "xcode-dark"
+use = "hljs"  # 1. prismjs 2. hljs 3. none
+theme = "dracula"
+darkTheme = "xcode-dark"  # apply this theme in dark mode
 
 [params.nav]
 showCategories = true       # /categories/
