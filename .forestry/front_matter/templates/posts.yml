@@ -30,4 +30,5 @@ fields:
   name: author
   label: author
 pages:
+- content/post/using-key-paths-in-switch-statements-1.md
 - content/post/using-key-paths-in-switch-statements.md
