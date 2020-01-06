@@ -17,8 +17,8 @@ fields:
 - type: list
   name: tags
   label: tags
-- name: imgs
+- name: featuredimage
   type: file
   config:
     maxSize: 250
-  label: imgs
+  label: featuredimage
