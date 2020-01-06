@@ -22,3 +22,5 @@ fields:
   config:
     maxSize: 250
   label: imgs
+pages:
+- content/post/this-article-offers-a-sample-of-basic-markdown.md
