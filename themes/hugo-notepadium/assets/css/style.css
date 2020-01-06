@@ -782,14 +782,14 @@ a.post-card-image-link {
     transition: all .5s ease;
 }
 
-@media (max-width: 650px)
+@media (max-width: 650px) {
 .note.list .item {
     width: auto;
     margin: 15px;
     display: block;
 }
-
-@media (max-width: 650px)
+}
+@media (max-width: 650px) {
 .post-card-image {
     display: block;
     padding-top: 50%;
@@ -801,4 +801,5 @@ a.post-card-image-link {
     transition-duration: .3s;
     background-position: 50%;
     background-size: cover;
+}
 }
