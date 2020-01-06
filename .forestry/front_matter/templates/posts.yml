@@ -22,5 +22,3 @@ fields:
   config:
     maxSize: 250
   label: featuredimage
-pages:
-- content/post/在-netlify-使用最新版本的-hugo-和-go-构建网站.md
