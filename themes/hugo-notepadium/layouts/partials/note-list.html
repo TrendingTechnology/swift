@@ -17,7 +17,7 @@
                     {{- if and (not (hasPrefix $imgurl "http://")) (not (hasPrefix $imgurl "https://")) -}}
                     {{- $imgurl = path.Join $relURL . -}}
                     {{- end -}}
-                    <img class="img" src="{{- $imgurl -}}" alt />
+                    <img class="img" src="{{ index .Params "featuredimage"}}" alt />
                     {{- end -}}
                 </span>
             {{- end -}}
