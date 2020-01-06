@@ -39,7 +39,7 @@ enable = false # load math globally, default: false. You can always enable math 
 use = "katex"  # builtin: "katex", "mathjax".  default: "katex"
 
 [params.syntax]
-use = "hljs"  # 1. prismjs 2. hljs 3. none
+use = "none"  # 1. prismjs 2. hljs 3. none
 theme = "dracula"
 darkTheme = "xcode-dark"  # apply this theme in dark mode
 
